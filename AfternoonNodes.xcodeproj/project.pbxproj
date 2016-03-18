@@ -7,7 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		90458E101C99DB840013BA2D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90458E0F1C99DB840013BA2D /* main.cpp */; };
+		90458E251C99DC1D0013BA2D /* NodeController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90458E171C99DC1D0013BA2D /* NodeController.cpp */; };
+		90458E261C99DC1D0013BA2D /* NodeRunner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90458E191C99DC1D0013BA2D /* NodeRunner.cpp */; };
+		90458E271C99DC1D0013BA2D /* ArrayNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90458E1B1C99DC1D0013BA2D /* ArrayNode.cpp */; };
+		90458E281C99DC1D0013BA2D /* CTECArray.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90458E1D1C99DC1D0013BA2D /* CTECArray.cpp */; };
+		90458E291C99DC1D0013BA2D /* CTECList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90458E1F1C99DC1D0013BA2D /* CTECList.cpp */; };
+		90458E2A1C99DC1D0013BA2D /* Node.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90458E211C99DC1D0013BA2D /* Node.cpp */; };
+		90458E2B1C99DC1D0013BA2D /* Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90458E231C99DC1D0013BA2D /* Timer.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +30,19 @@
 
 /* Begin PBXFileReference section */
 		90458E0C1C99DB840013BA2D /* AfternoonNodes */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AfternoonNodes; sourceTree = BUILT_PRODUCTS_DIR; };
-		90458E0F1C99DB840013BA2D /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		90458E171C99DC1D0013BA2D /* NodeController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeController.cpp; sourceTree = "<group>"; };
+		90458E181C99DC1D0013BA2D /* NodeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeController.h; sourceTree = "<group>"; };
+		90458E191C99DC1D0013BA2D /* NodeRunner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NodeRunner.cpp; sourceTree = "<group>"; };
+		90458E1B1C99DC1D0013BA2D /* ArrayNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ArrayNode.cpp; sourceTree = "<group>"; };
+		90458E1C1C99DC1D0013BA2D /* ArrayNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArrayNode.h; sourceTree = "<group>"; };
+		90458E1D1C99DC1D0013BA2D /* CTECArray.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CTECArray.cpp; sourceTree = "<group>"; };
+		90458E1E1C99DC1D0013BA2D /* CTECArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTECArray.h; sourceTree = "<group>"; };
+		90458E1F1C99DC1D0013BA2D /* CTECList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CTECList.cpp; sourceTree = "<group>"; };
+		90458E201C99DC1D0013BA2D /* CTECList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTECList.h; sourceTree = "<group>"; };
+		90458E211C99DC1D0013BA2D /* Node.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Node.cpp; sourceTree = "<group>"; };
+		90458E221C99DC1D0013BA2D /* Node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Node.h; sourceTree = "<group>"; };
+		90458E231C99DC1D0013BA2D /* Timer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Timer.cpp; sourceTree = "<group>"; };
+		90458E241C99DC1D0013BA2D /* Timer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Timer.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,7 +59,8 @@
 		90458E031C99DB840013BA2D = {
 			isa = PBXGroup;
 			children = (
-				90458E0E1C99DB840013BA2D /* AfternoonNodes */,
+				90458E161C99DC1D0013BA2D /* Controller */,
+				90458E1A1C99DC1D0013BA2D /* Model */,
 				90458E0D1C99DB840013BA2D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,12 +73,31 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		90458E0E1C99DB840013BA2D /* AfternoonNodes */ = {
+		90458E161C99DC1D0013BA2D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				90458E0F1C99DB840013BA2D /* main.cpp */,
+				90458E171C99DC1D0013BA2D /* NodeController.cpp */,
+				90458E181C99DC1D0013BA2D /* NodeController.h */,
+				90458E191C99DC1D0013BA2D /* NodeRunner.cpp */,
 			);
-			path = AfternoonNodes;
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		90458E1A1C99DC1D0013BA2D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				90458E1B1C99DC1D0013BA2D /* ArrayNode.cpp */,
+				90458E1C1C99DC1D0013BA2D /* ArrayNode.h */,
+				90458E1D1C99DC1D0013BA2D /* CTECArray.cpp */,
+				90458E1E1C99DC1D0013BA2D /* CTECArray.h */,
+				90458E1F1C99DC1D0013BA2D /* CTECList.cpp */,
+				90458E201C99DC1D0013BA2D /* CTECList.h */,
+				90458E211C99DC1D0013BA2D /* Node.cpp */,
+				90458E221C99DC1D0013BA2D /* Node.h */,
+				90458E231C99DC1D0013BA2D /* Timer.cpp */,
+				90458E241C99DC1D0013BA2D /* Timer.h */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -118,7 +156,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90458E101C99DB840013BA2D /* main.cpp in Sources */,
+				90458E2A1C99DC1D0013BA2D /* Node.cpp in Sources */,
+				90458E251C99DC1D0013BA2D /* NodeController.cpp in Sources */,
+				90458E2B1C99DC1D0013BA2D /* Timer.cpp in Sources */,
+				90458E261C99DC1D0013BA2D /* NodeRunner.cpp in Sources */,
+				90458E271C99DC1D0013BA2D /* ArrayNode.cpp in Sources */,
+				90458E291C99DC1D0013BA2D /* CTECList.cpp in Sources */,
+				90458E281C99DC1D0013BA2D /* CTECArray.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
