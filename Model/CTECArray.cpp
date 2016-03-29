@@ -100,3 +100,13 @@ void CTECArray<Type> :: set(int position, const Type& value)
 		}
 
 }
+
+template <class Type>
+void CTECLIst<Type> :: swap(int indexOne, int indexTwo)
+{
+    assert(indexOne < size && indexTwo < size);
+    
+    Type temp = get(indexOne);
+    set(indexOne, get(indexTwo));
+    set(indexTwo, temp);
+}
