@@ -77,7 +77,7 @@ Type CTECArray<Type> :: get(int position)
 				return current->getValue();
 			}
 		}
-
+    return current->getValue();
 }
 
 
@@ -102,7 +102,7 @@ void CTECArray<Type> :: set(int position, const Type& value)
 }
 
 template <class Type>
-void CTECLIst<Type> :: swap(int indexOne, int indexTwo)
+void CTECArray<Type> :: swap(int indexOne, int indexTwo)
 {
     assert(indexOne < size && indexTwo < size);
     
@@ -120,7 +120,7 @@ void CTECArray<Type> :: selectionSort()
         
         for(int innerLoop = outerLoop +1; innerLoop < size; innerLoop++)
         {
-            if(getFromIndex(innerLoop) < get(selectedMinimum))
+            if(get(innerLoop) < get(selectedMinimum))
             {
                 selectedMinimum = innerLoop;
             }

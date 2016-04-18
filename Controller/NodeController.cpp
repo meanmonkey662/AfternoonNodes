@@ -2,59 +2,62 @@
  * NodeController.cpp
  *
  *  Created on: Jan 27, 2016
- *      Author: kkoc6943
+ *      Author: droc6148
  */
+
 
 #include "NodeController.h"
 #include <iostream>
-#include <stdlib.h
 
 using namespace std;
 
 NodeController::NodeController()
 {
-	notHipsterInts = new CTECArray<int>(5);
+    notHipsterInts = new CTECArray<int>(5);
+    numbers = new CTECList<int>();
 }
 
 NodeController::~NodeController()
 {
-
+    
 }
 
 void NodeController :: start()
 {
-	for(int index = 0; index < notHipsterInts->getSize(); index++)
-	{
-		notHipsterInts->set(index, (index * 23));
-	}
-
-	for(int index = notHipsterInts->getSize()-1; index >= 0; index--)
-	{
-		cout << "The contents of the notHipsterInts array node" << index << " are: " << notHipsterInts->get(index) << endl;
-	}
-
-	arrayTimer.stopTimer();
-	arrayTimer.dislayTimerInformation();
-
+    
+    
+    for(int index = 0; index < notHipsterInts->getSize(); index++)
+    {
+        notHipsterInts->set(index, (index * 23));
+    }
+    
+    for(int index = notHipsterInts->getSize()-1; index >= 0; index--)
+    {
+        cout << "The contents of the notHipsterInts array node" << index << " are: " << notHipsterInts->get(index) << endl;
+    }
+    
+    arrayTimer.stopTimer();
+    arrayTimer.dislayTimerInformation();
 }
 
-void NodeController::sortData();
+
+void NodeController::sortData()
 {
     /*
-     creare a CTECList, CTECArray
+     Create a CTECList, CTECArray
      Fill them with random stuff(numbers)
-     Start a timer, sort, stop timer, display info for list
-     Start a timer, sort, stop timer, display info for array
+     start timer, sort, stop timer, diplay info for list
+     start timer, sort, stop timer, diplay info for array
      */
     CTECArray<int> randomNumberArray(5000);
     CTECList<int> randomNumberList;
-    intmyCPlusPlusArray[5000];
+    int myCPlusPlusArray[5000];
     
-    for(int spot = 0; spot <5000; spot++)
+    for(int spot = 0; spot < 5000; spot++)
     {
         int myRandom = rand();
         randomNumberArray.set(spot, myRandom);
-        randomNumberList,addToEnd(myRandom);
+        randomNumberList.addToEnd(myRandom);
         myCPlusPlusArray[spot] = myRandom;
     }
     
@@ -62,14 +65,101 @@ void NodeController::sortData();
     sortTimer.startTimer();
     randomNumberArray.selectionSort();
     sortTimer.stopTimer();
-    sortTimer.displayTimerInformation();
+    sortTimer.dislayTimerInformation();
     
     sortTimer.resetTimer();
     
     sortTimer.startTimer();
-    std::sort(std::begin(mCPlusPlusArray), std::end(myCPlusPlusArray));
+    std::sort(begin(myCPlusPlusArray), end(myCPlusPlusArray));
     sortTimer.stopTimer();
-    sortTimer.displayTimerInformation();
+    sortTimer.dislayTimerInformation();
     
     sortTimer.resetTimer();
+    
+}
+
+void NodeController::doMergesort()
+{
+    mergeData = new int[500000];
+    
+    for(int spot = 0; spot < 500000; spot++)
+    {
+        int myRandom = rand();
+        mergeData[spot] = myRandom;
+    }
+    for(int spot =0; spot < 5000; spot++)
+    {
+        cout << mergeData[spot] << ", ";
+    }
+    
+    Timer mergeTimer;
+    mergeTimer.startTimer();
+    mergesort(mergeData, 500000);
+    mergeTimer.stopTimer();
+    mergeTimer.dislayTimerInformation();
+    
+    for(int spot =0; spot < 5000; spot++)
+    {
+        cout << mergeData[spot] << ", ";
+    }
+    
+    delete [] mergeData;
+}
+
+void NodeController::mergesort(int data[], int size)
+{
+    int sizeOne;
+    int sizeTwo;
+    
+    if(size > 1)
+    {
+        sizeOne = size/2;
+        sizeTwo  = size-sizeOne;
+        
+        mergesort(data, sizeOne);
+        mergesort((data+sizeOne), sizeTwo);
+        
+        merge(data, sizeOne, sizeTwo);
+    }
+    
+}
+
+void NodeController::merge(int data[], int sizeOne, int sizeTwo)
+{
+    int * temp;
+    int copied = 0;
+    int copied1 = 0;
+    int copied2 = 0;
+    
+    int index;
+    
+    temp = new int[sizeOne + sizeTwo];
+    
+    while((copied1 < sizeOne) && (copied2 < sizeTwo))
+    {
+        if(data[copied1] < (data + sizeOne) [copied2])
+        {
+            temp[copied++] = data[copied1++];
+        }
+        else
+        {
+            temp[copied++] = (data + sizeOne) [copied2++];
+        }
+    }
+    
+    while(copied1 < sizeOne)
+    {
+        temp[copied++] = data[copied1++];
+    }
+    while(copied2 < sizeTwo)
+    {
+        temp[copied++] = (data + sizeOne)[copied2++];
+    }
+    
+    for(index = 0; index < sizeOne + sizeTwo; index++)
+    {
+        data[index] = temp[index];
+    }
+    delete [] temp;
+    
 }

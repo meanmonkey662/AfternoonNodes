@@ -55,7 +55,7 @@ Type CTECList<Type> :: removeFromEnd()
 
 	if(size ==1)
 	{
-		ArrayNode * toRemove = end;
+		ArrayNode<Type> * toRemove = end;
 		returnValue = removeFromFront();
 		end = nullptr;
 		head = nullptr;
@@ -74,7 +74,7 @@ Type CTECList<Type> :: removeFromEnd()
 		current->setNext(nullptr);
 	}
 
-	calculatedSize();
+	calculateSize();
 
 	return returnValue;
 }
@@ -136,27 +136,6 @@ template<class Type>
  3. loop over nodes until value is found
  4. return index or -1 if not found.
  */
-template<class Type>
-int CTECArray<Type> :: indexOff(Type searchValue)
-{
-    assert(this->size > 0)
-    
-    ArrayNode<Type> * current = head;
-    int indexNotFound = -1;
-    
-    for(int index = 0; index < this->size; index++)
-    {
-        if(current->getValue() == searchValue)
-        {
-            return index;
-        }
-        else
-        {
-            current = current->getValue();
-        }
-    }
-    return indexNotFound;
-}
 
 template <class Type>
 int CTECList<Type> :: indexOf(Type searchValue)
@@ -184,8 +163,8 @@ void CTECList<Type> :: swap(int indexOne, int indexTwo)
 {
     assert(indexOne < size && indexTwo < size);
     
-    Type temp = get(indexOne);
-    set(indexOne, get(indexTwo));
+    Type temp = getFromIndex(indexOne);
+    set(indexOne, getFromIndex(indexTwo));
     set(indexTwo, temp);
 }
 

@@ -6,7 +6,6 @@
 //  Copyright © 2016 CTEC. All rights reserved.
 //
 
-#ifndef TreeNode_hpp
 #define TreeNode_hpp
 
 #include "Node.h"
