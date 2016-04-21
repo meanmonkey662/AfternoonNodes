@@ -110,3 +110,101 @@ bool CTECBinaryTree<Type> :: contains(Type value, CTECBinaryTree<Type> * current
     
     return isInTree;
 }
+
+template <class Type>
+void CTECBinaryTree<Type> :: remove(const Type& value)
+{
+    TreeNode<Type> * current;
+    TreeNode<Type> * trailing;
+    
+    if(!contains(value))
+    {
+        return;
+    }
+    else
+    {
+        current = root;
+        trailing = root;
+        
+        while(current != nullptr && current->getValue() != value)
+        {
+            trailing = current;
+            if(current->getValue() > value)
+            {
+                current = current->getLeftChild();
+            }
+            else
+            {
+                current = current->getRightChild();
+            }
+        }
+        if(current == root)
+        {
+            remove(root);
+        }
+        else if(trailing->getValue() > value)
+        {
+            remove(trailing->getLeftChild());
+        }
+        else
+        {
+            remove(trailing->getRightChild());
+        }
+    }
+}
+
+template <class Type>
+void CTECBinaryTree<Type> :: remove(TreeNode<Type> * nodeToBeRemoved)
+{
+    TreeNode<Type> * current;
+    TreeNode<Type> * trailing;
+    TreeNode<Type> * temp;
+    
+    if(nodeToBeRemoved == nullptr)
+    {
+        cerr << "OOps! Cant remove something that isnt there." << endl;
+    }
+    else if(nodeToBeRemoved->getLeftChild() == nullptr &&
+            nodeToBeRemoved->getRightChild() == nullptr)
+    {
+        temp = nodeToBeRemoved;
+        nodeToBeRemoved = nullptr;
+        delete temp;
+    }
+    else if (nodeToBeRemoved->getLeftChild() == nullptr)
+    {
+        temp = nodeToBeRemoved;
+        nodeToBeRemoved = temp->getRightChild();
+        delete temp;
+    }
+    else if (nodeToBeRemoved->getRightChild() == nullptr)
+    {
+        temp = nodeToBeRemoved;
+        nodeToBeRemoved = temp->getLeftChild();
+        delete temp;
+    }
+    else
+    {
+        current = nodeToBeRemoved->getLeftChild();
+        trailing = nullptr;
+        
+        while(current->getRightChild() != nullptr)
+        {
+            trailing = current;
+            current = current->getRightChild();
+        }
+        
+        nodeToBeRemoved->setValue(current->getValue());
+        
+        if(trailing == nullptr)
+        {
+            nodeToBeRemoved->setLeftChild(getLeftChild());
+        }
+        else
+        {
+            trailing->setRightChild(current->getLeftChild());
+        }
+        delete current;
+    }
+
+}
