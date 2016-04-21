@@ -106,6 +106,17 @@ void NodeController::doMergesort()
     delete [] mergeData;
 }
 
+void NodeController:: tryTree()
+{
+    CTECBinaryTree<int> firstTree;
+    firstTree.insert(72);
+    firstTree.insert(846);
+    firstTree.insert(-42);
+    firstTree.insert(3);
+    
+    cout <<
+}
+
 void NodeController::mergesort(int data[], int size)
 {
     int sizeOne;
