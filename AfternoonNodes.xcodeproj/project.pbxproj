@@ -17,6 +17,7 @@
 		90BBD1B81CCE8FC4007709FD /* CTECGraph.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90BBD1B61CCE8FC4007709FD /* CTECGraph.cpp */; };
 		90CA1CBF1CBC1D3700FB0DC3 /* TreeNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90CA1CBD1CBC1D3700FB0DC3 /* TreeNode.cpp */; };
 		90CA1CC21CBC2D4600FB0DC3 /* CTECBinaryTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90CA1CC01CBC2D4600FB0DC3 /* CTECBinaryTree.cpp */; };
+		90FC5FCE1CDBC4F6004CB762 /* CTECHashTable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90FC5FCC1CDBC4F6004CB762 /* CTECHashTable.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -52,6 +53,8 @@
 		90CA1CBE1CBC1D3700FB0DC3 /* TreeNode.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TreeNode.hpp; sourceTree = "<group>"; };
 		90CA1CC01CBC2D4600FB0DC3 /* CTECBinaryTree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CTECBinaryTree.cpp; sourceTree = "<group>"; };
 		90CA1CC11CBC2D4600FB0DC3 /* CTECBinaryTree.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CTECBinaryTree.hpp; sourceTree = "<group>"; };
+		90FC5FCC1CDBC4F6004CB762 /* CTECHashTable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CTECHashTable.cpp; sourceTree = "<group>"; };
+		90FC5FCD1CDBC4F6004CB762 /* CTECHashTable.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CTECHashTable.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +114,8 @@
 				90CA1CC11CBC2D4600FB0DC3 /* CTECBinaryTree.hpp */,
 				90BBD1B61CCE8FC4007709FD /* CTECGraph.cpp */,
 				90BBD1B71CCE8FC4007709FD /* CTECGraph.hpp */,
+				90FC5FCC1CDBC4F6004CB762 /* CTECHashTable.cpp */,
+				90FC5FCD1CDBC4F6004CB762 /* CTECHashTable.hpp */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -180,6 +185,7 @@
 				90458E271C99DC1D0013BA2D /* ArrayNode.cpp in Sources */,
 				90CA1CC21CBC2D4600FB0DC3 /* CTECBinaryTree.cpp in Sources */,
 				90458E291C99DC1D0013BA2D /* CTECList.cpp in Sources */,
+				90FC5FCE1CDBC4F6004CB762 /* CTECHashTable.cpp in Sources */,
 				90458E281C99DC1D0013BA2D /* CTECArray.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
