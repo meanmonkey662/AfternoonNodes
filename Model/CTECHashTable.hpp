@@ -8,32 +8,41 @@
 
 #ifndef CTECHashTable_hpp
 #define CTECHashTable_hpp
+#include "HashNode.cpp"
+#include "CTECList.cpp"
 
-namespace CTECData
+template <class Type>
+class CTECHashTable
 {
-    template <class Type>
-    class CTECHashTable
-    {
-    private:
-        int size;
-        int capacity;
-        Type * internalStorage;
-        double efficiencyPercentage;
-        
-        int findPosition(const Type& value);
-        int handleCollision(const Type& value);
-        void updateSize();
-    public:
-        CTECHashTable();
-        ~CTECHashTable();
-        
-        void add(const Type & value);
-        bool remove(const Type & value);
-        bool contains(const Type & value);
-        int getSize();
-        
-    };
-}
+private:
+    int size;
+    int capacity;
+    HashNode<Type> * internalStorage;
+    
+    int tableCapacity;
+    int tableSize;
+    CTECList<HashNode<Type>> * tableStorage;
+    void updateTableCapacity();
+    
+    double efficiencyPercentage;
+    
+    int findPosition(HashNode<Type> currentNode);
+    int handleCollision(HashNode<Type> currentNode);
+    void updateCapacity();
+    int getNextPrime();
+    bool isPrime(int candidateNumber);
+
+public:
+    CTECHashTable();
+    ~CTECHashTable();
+    
+    void add(HashNode<Type> currentNode);
+    void addChained(HashNode<Type> currentNode);
+    bool remove(HashNode<Type> currentNode);
+    bool contains(HashNode<Type> currentNode);
+    int getSize();
+    
+};
 #include <stdio.h>
 
 #endif /* CTECHashTable_hpp */

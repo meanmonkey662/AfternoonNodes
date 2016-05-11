@@ -35,6 +35,3 @@ TreeNode<Type> :: TreeNode(const Type& value, TreeNode<Type> * parent) : Node<Ty
     this->parent = nullptr;
     
 }
-
-template <class Type>
-void TreeNode<Type> :: setLeftChild(TreeNode)

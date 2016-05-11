@@ -21,7 +21,7 @@ namespace CTECData
         bool balanced;
         bool contains(Type value, CTECBinaryTree<Type> * currentTree);
         
-        void remove(TreeNodePM<Type> nodeToBeRemoved);
+        void remove(TreeNode<Type> nodeToBeRemoved);
     public:
         CTECBinaryTree();
         ~CTECBinaryTree();

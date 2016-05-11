@@ -14,7 +14,7 @@ namespace CTECData
 {
     
 template <class Type>
-void CTECBinaryTree<Type> :: CTECBinaryTree();
+CTECBinaryTree<Type> :: CTECBinaryTree()
     {
         this->root = nullptr;
         this->size = 0;
@@ -23,7 +23,7 @@ void CTECBinaryTree<Type> :: CTECBinaryTree();
     }
     
 template <class Type>
-void CTECBinaryTree<Type> :: getSize()
+int CTECBinaryTree<Type> :: getSize()
     {
         size = 0;
         calculatedSize(root);
