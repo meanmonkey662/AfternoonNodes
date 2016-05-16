@@ -19,7 +19,7 @@ CTECHashTable<Type> :: CTECHashTable()
     this->size = 0;
     this->capacity = 101;
     this->efficiencyPercentage = .677;
-    this->internalStorage = new HashNode<Type>[capacity];
+    this->internalStorage = new HashNode<Type>*[capacity];
     
     this->chainedSize = 0;
     this->chainedCapacity = 101;
@@ -142,6 +142,38 @@ bool CTECHashTable<Type> :: isPrime(int canidateNumber)
     }
 }
 
+template <class Type>
+void CTECHashTable<Type> :: updateChainedCapacity()
+{
+    int updatedChainedCapacity = getNextPrime();
+    int oldChainedCapacity = chainedCapacity;
+    chainedCapacity = updatedChainedCapacity;
+    
+    CTECList<HashNode<Type>> * largerChainedStorage = new CTECList<HashNode<Type>>[updatedChainedCapacity];
+    
+    for(int index = 0; index < oldChainedCapacity; index++)
+    {
+        if(chainedStorage[index] != nullptr)
+        {
+            CTECList<HashNode<TYpe>> temp = chainedStorage[index];
+            for(int innerIndex = 0; innerIndex)
+            {
+                int updatedChainedPosition = findPosition(temp.getFromIndex(innerIndex));
+                if(largerChainedStorage[updatedChainedPosition] == nullptr
+                   {
+                       CTECList<HashNode<Type>> insertList;
+                       insertList.addEnd(temp.getFromIndex(innerIndex));
+                       largerChainedStorage[updatedChainedPosition] = insertList;
+                   }
+                   else
+                   {
+                       largerChainedStorage[updatedChainedPosition].addEnd(temp.getFromIndex(innerIndex));
+                   }
+            }
+        }
+    }
+}
+
 template<class Type>
 void CTECHashTable<Type> :: updateCapacity()
 {
@@ -155,7 +187,7 @@ void CTECHashTable<Type> :: updateCapacity()
     {
         if(internalStorage[index] != nullptr)
         {
-            int updateIndex = findPosition(internalStorage[index]);
+            int updateIndex = findPosition(*internalStorage[index]);
             largerStorage[updateIndex] = internalStorage[index];
         }
     }
@@ -172,7 +204,7 @@ bool CTECHashTable<Type> :: contains(HashNode<Type> currentNode)
     
     while(internalStorage[possibleLocation] != nullptr && !isInTable)
     {
-        if(internalStorage[possibleLocation].getValue() == currentNode.getValue())
+        if(internalStorage[possibleLocation]->getValue() == currentNode.getValue())
         {
             isInTable = true;
         }
