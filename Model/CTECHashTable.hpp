@@ -8,44 +8,50 @@
 
 #ifndef CTECHashTable_hpp
 #define CTECHashTable_hpp
+
+#include <stdio.h>
 #include "HashNode.cpp"
 #include "CTECList.h"
-
 template <class Type>
 class CTECHashTable
 {
 private:
     int size;
     int capacity;
-    int chainedSize;
     int chainedCapacity;
+    int chainedSize;
+    CTECList<HashNode<Type>> * chainedStorage;
     HashNode<Type> ** internalStorage;
+    double efficiencyPercentage();
+    void updateChainCapacity();
     
-    int tableCapacity;
-    int tableSize;
-    CTECList<HashNode<Type>> * tableStorage;
-    void updateChainedCapacity();
-    
-    double efficiencyPercentage;
-    
-    int findPosition(HashNode<Type> currentNode);
+    int findPos(HashNode<Type> currentNode);
     int handleCollision(HashNode<Type> currentNode);
     void updateCapacity();
+    
     int getNextPrime();
     bool isPrime(int candidateNumber);
-
+    
+    
+    
 public:
     CTECHashTable();
     ~CTECHashTable();
-    
-    void addChained(HashNode<Type> currentNode);
     void add(HashNode<Type> currentNode);
     void addChained(HashNode<Type> currentNode);
+    
     bool remove(HashNode<Type> currentNode);
     bool contains(HashNode<Type> currentNode);
     int getSize();
     
+    
+    
+    
 };
-#include <stdio.h>
+
+
+
+
+
 
 #endif /* CTECHashTable_hpp */

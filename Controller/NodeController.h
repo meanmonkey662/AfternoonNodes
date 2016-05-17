@@ -13,40 +13,45 @@
 #ifndef CONTROLLER_NODECONTROLLER_H_
 #define CONTROLLER_NODECONTROLLER_H_
 
-#include <string>
-#include "../Model/CTECArray.cpp"
 #include "../Model/Node.cpp"
 #include "../Model/ArrayNode.cpp"
+#include "../Model/CTECArray.cpp"
 #include "../Model/Timer.h"
-#include "../Model/CTECList.cpp"
+#include "../model/CTECList.cpp"
+#include "../model/CTECGraph.cpp"
+#include "../model/CTECBinaryTree.cpp"
 
+
+#include <string>
 using namespace std;
 
 class NodeController
 {
 private:
+    Timer arrayTimer;
     CTECArray<int> * notHipsterInts;
     CTECList<int> * numbers;
-    Timer arrayTimer;
     void sortData();
-    void testList();
-    
-    
-    void swap(int first, int second);
-    void quicksort(int first, int last);
-    int parttion(int first, int last);
-    void doQuick();
-    
     
     int * mergeData;
     void doMergesort();
-    void mergesort(int data [], int size);
+    void mergesort(int data[], int size);
     void merge(int data [], int sizeOne, int sizeTwo);
     
+    
+    void swap(int first, int seconed);
+    void quicksort(int first, int last);
+    int partition(int first, int last);
+    void doQuick();
+    
+    void tryGraphs();
+    void tryTrees();
+    
 public:
-    NodeController();
+    void testList();
     virtual ~NodeController();
+    NodeController();
     void start();
 };
 
-#endif /* CONTROLLER_NODECONTROLLER_H_ */
+#endif

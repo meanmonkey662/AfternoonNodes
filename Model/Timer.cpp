@@ -20,7 +20,7 @@ Timer::~Timer()
 
 }
 
-void Timer ::dislayTimerInformation()
+void Timer ::displayTimerInfo()
 {
 	cout << fixed;
 	cout << setprecision(8);
@@ -42,9 +42,4 @@ void Timer:: stopTimer()
 void Timer::resetTimer()
 {
 	executionTime = 0;
-}
-
-long Timer::getExecutionTimeInMicroseconds()
-{
-	return executionTime;
 }

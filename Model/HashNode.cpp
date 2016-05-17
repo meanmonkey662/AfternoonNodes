@@ -7,29 +7,21 @@
 //
 
 #include "HashNode.hpp"
-using namespace CTECData;
-
 template<class Type>
-HashNode<Type> :: HashNode()
-{
-    
-}
-
-template <class Type>
 HashNode<Type> :: HashNode(int key, const Type& value)
 {
     this->key = key;
     this->value = value;
 }
 
-template <class Type>
+template<class Type>
 int HashNode<Type> :: getKey()
 {
     return key;
 }
 
-template <class Type>
+template<class Type>
 Type HashNode<Type> :: getValue()
 {
-    return key;
+    return value;
 }

@@ -7,19 +7,24 @@
 
 #ifndef MODEL_TIMER_H_
 #define MODEL_TIMER_H_
+
 #include <time.h>
 
 class Timer
 {
-	clock_t executionTime;
+private:
+    clock_t executionTime;
 public:
-	Timer();
-	virtual ~Timer();
-	void startTimer();
-	void stopTimer();
-	void resetTimer();
-	void dislayTimerInformation();
-	long getExecutionTimeInMicroseconds();
+    
+    Timer();
+    virtual ~Timer();
+    void startTimer();
+    void stopTimer();
+    void resetTimer();
+    void displayTimerInfo();
+    long getExecutionInMicorseconds();
 };
+
+
 
 #endif /* MODEL_TIMER_H_ */
