@@ -7,6 +7,7 @@
 
 #ifndef MODEL_CTECARRAY_H_
 #define MODEL_CTECARRAY_H_
+
 #include "ArrayNode.h"
 
 template<class Type>
@@ -15,16 +16,15 @@ class CTECArray
 private:
     int size;
     ArrayNode<Type> * head;
+    void swap(int indexOne, int indexTwo);
 public:
     CTECArray(int size);
     virtual ~CTECArray();
-    void swap(int indexOne, int indexTwo);
-    int indexOf(Type searchValue);
-    Type get(int pos);
-    int getSize();
-    void set(int pos, const Type& value);
-    void selectionSort();
     
+    int getSize();
+    void set(int position, const Type& value);
+    Type get(int postition);
+    void selectionSort();
 };
 
 #endif /* MODEL_CTECARRAY_H_ */

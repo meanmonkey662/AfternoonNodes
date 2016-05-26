@@ -6,44 +6,40 @@
  */
 
 #include "Node.h"
-
 #include <iostream>
-
 template<class Type>
-Node<Type> :: Node()
+Node<Type>::Node()
 {
+    
     this->pointers = nullptr;
 }
 
 template<class Type>
-Node<Type> :: Node(const Type& value)
+Node<Type>::Node(const Type& value)
 {
-    this->value = value;
+    
     this->pointers = nullptr;
 }
 
 template<class Type>
-Type Node<Type> :: getValue()
+Node<Type>::~Node()
+{
+    
+}
+
+template<class Type>
+Type Node<Type>::getValue()
 {
     return this->value;
 }
-
 template<class Type>
-void Node<Type> :: setValue(const Type& value)
+void Node<Type>::setValue(const Type& value)
 {
-    this -> value = value;
+    this->value = value;
 }
 
-
-
 template<class Type>
-Node<Type> * Node<Type> :: getPointers()
+Node<Type> * Node<Type>::getPointers()
 {
     return this->pointers;
-}
-
-template<class Type>
-Node<Type> ::~Node()
-{
-    
 }

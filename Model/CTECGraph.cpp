@@ -7,9 +7,20 @@
 //
 #include "CTECGraph.hpp"
 #include <queue>
+
 using namespace std;
+using namespace CTECData;
+template <class Type>
+CTECGraph<Type> :: CTECGraph()
+{
+    manyVertices = 0;
+}
 
-
+template <class Type>
+CTECGraph<Type> :: ~CTECGraph()
+{
+    
+}
 
 template<class Type>
 void CTECGraph<Type> :: addVertex(const Type& value)
@@ -26,6 +37,8 @@ void CTECGraph<Type> :: addVertex(const Type& value)
     labels[newVertexNumber] = value;
 }
 
+
+
 template<class Type>
 void CTECGraph<Type> :: addEdge(int source, int target)
 {
@@ -33,38 +46,43 @@ void CTECGraph<Type> :: addEdge(int source, int target)
     adjacencyMatrix[source][target] = true;
 }
 
+
+
 template<class Type>
 bool CTECGraph<Type>:: isEdge(int source, int target) const
 {
     assert(source < size() && target < size());
-    
     bool isAnEdge = false;
     isAnEdge = adjacencyMatrix[source][target];
     
     return isAnEdge;
 }
 
+
 template<class Type>
 Type& CTECGraph<Type> :: operator[](int vertex)
 {
     assert(vertex < size());
     return labels[vertex];
-    
 }
+
+
 
 template<class Type>
 Type CTECGraph<Type> :: operator[](int vertex) const
 {
     assert(vertex < size());
     return labels[vertex];
-    
 }
+
 
 template<class Type>
 std::set<int> CTECGraph<Type> :: neighbors(int vertex)const
 {
     assert(vertex < size());
     std::set<int> vertexNeighbors;
+    
+    
     
     for(int index = 0; index < size(); index++)
     {
@@ -84,7 +102,6 @@ void CTECGraph<Type> :: removeEdge(int source, int target)
 }
 
 
-
 template <class Type>
 void CTECGraph<Type> :: depthFirstTraversal(CTECGraph<Type> currentGraph, int vertex)
 {
@@ -94,12 +111,13 @@ void CTECGraph<Type> :: depthFirstTraversal(CTECGraph<Type> currentGraph, int ve
     depthFirstTraversal(currentGraph, vertex, markedVerticies);
 }
 
+
+
 template <class Type>
 void CTECGraph<Type> :: depthFirstTraversal(CTECGraph<Type> currentGraph, int vertex, bool * markedVertecies)
 {
     std::set<int> connections = currentGraph.neighbors(vertex);
     std::set<int>::iterator setIterator;
-    
     markedVertecies[vertex] = true;
     cout << currentGraph[vertex] << endl;
     
@@ -111,23 +129,30 @@ void CTECGraph<Type> :: depthFirstTraversal(CTECGraph<Type> currentGraph, int ve
         }
     }
 }
+
 template <class Type>
 void CTECGraph<Type> :: breadthFirstTraversal(CTECGraph<Type> currentGraph, int vertex)
 {
+    
     bool markedVertices[MAXIMUM];
+    
     std::set<int> connections;
     std::set<int>::iterator setIterator;
     std::queue<int> vertexQueue;
+    
     assert(vertex < currentGraph.size());
+    
     
     std::fill_n(markedVertices,currentGraph.size(), false);
     markedVertices[vertex] = true;
     cout << currentGraph[vertex] << endl;
     vertexQueue.push(vertex);
+    
     while(!vertexQueue.empty())
     {
         connections = currentGraph.neighbors(vertexQueue.front());
         vertexQueue.pop();
+        
         for(setIterator = connections.begin(); setIterator != connections.end(); setIterator++)
         {
             if(!markedVertices[*setIterator])
@@ -139,6 +164,8 @@ void CTECGraph<Type> :: breadthFirstTraversal(CTECGraph<Type> currentGraph, int 
         }
     }
 }
+
+
 
 template <class Type>
 int CTECGraph<Type> :: size() const

@@ -5,125 +5,65 @@
  */
 
 #include "CTECArray.h"
-#include<iostream>
-#include<assert.h>
+#include <assert.h>
 using namespace std;
+
 template<class Type>
 CTECArray<Type>::CTECArray(int size)
 {
     this->size = size;
-    this->size = size;
     this->head = nullptr;
-    //defensive code
-    if(size <= 0 )
+    
+    //Defensive
+    assert(size > 0);
+    for (int index = 0; index < size; index++)
     {
-        cerr << "WHAAAAAAAAAAAAAT?!" << endl;
-        return;
-    }
-    for(int index = 0; index < size; index++)
-    {
-        if(head != nullptr)
-        {
-            ArrayNode<Type> * nextNode = new ArrayNode<Type>();
-            nextNode->setNext(head);
+        if (head != nullptr)
+        {	//Regular ArrayNodes are being made.
+            ArrayNode<Type>* nextNode = new ArrayNode<Type>();
+            nextNode -> setNext(head);
             this->head = nextNode;
         }
         else
-        {
+        {	//The first ArrayNode needs to be make;
             ArrayNode<Type>* firstNode = new ArrayNode<Type>();
             this->head = firstNode;
         }
     }
-    
 }
+
 template<class Type>
 CTECArray<Type>::~CTECArray()
 {
     ArrayNode<Type> * deleteMe = head;
-    for(int index = 0; index < size; index++)
+    for (int index = 0; index < size; index++)
     {
-        if(deleteMe->getNext() != nullptr)
+        if (deleteMe->getNext() != nullptr)
         {
             head = deleteMe->getNext();
             deleteMe->setNext(nullptr);
-            delete deleteMe;
-            deleteMe = head;
         }
-        else
-        {
-            delete deleteMe;
-            deleteMe = head;
-        }
+        delete deleteMe;
+        deleteMe = head;
     }
-    
     delete head;
 }
 
-/*
- Gets the position of the item being searched for in the list.
- */
 template<class Type>
-int CTECArray<Type>::indexOf(Type searchValue)
+int CTECArray<Type>::getSize()
 {
-    assert(this->size<0);
+    return this->size;
+}
+
+template<class Type>
+Type CTECArray<Type>::get(int position)
+{
+    //We need to do bounds checking so we do not crash the program.
+    assert(position < size && position >= 0);
     ArrayNode<Type> * current = head;
-    int indexNotFound = -1;
-    
-    for(int index = 0; index < this->size; index++)
+    for (int spot = 0; spot <= position; spot++)
     {
-        if(current->getValue == searchValue)
-        {
-            return index;
-        }
-    }
-    
-    return indexNotFound;
-}
-
-template<class Type>
-void CTECArray<Type> :: swap(int indexOne, int indexTwo)
-{
-    assert(indexOne < size && indexTwo < size);
-    Type temp = get(indexOne);
-    set(indexOne, get(indexTwo));
-    set(indexTwo, temp);
-}
-
-
-
-template<class Type>
-void CTECArray<Type>::selectionSort()
-{
-    for(int outerLoop = 0; outerLoop < size - 1; outerLoop++)
-    {
-        int selectedMin = outerLoop;
-        
-        for(int innerLoop = outerLoop + 1; innerLoop < size; innerLoop++)
-        {
-            if(get(innerLoop) < get(selectedMin))
-            {
-                selectedMin = innerLoop;
-            }
-        }
-        if(selectedMin != outerLoop)
-        {
-            swap(selectedMin, outerLoop);
-        }
-        
-        
-    }
-}
-
-
-
-template<class Type>
-Type CTECArray<Type>::get(int pos)
-{
-    assert(pos < size && pos >= 0);
-    ArrayNode<Type> * current = head;
-    for (int spot = 0; spot <= pos; spot++)
-    {
-        if (spot != pos)
+        if (spot != position)
         {
             current = current->getNext();
         }
@@ -136,19 +76,23 @@ Type CTECArray<Type>::get(int pos)
 }
 
 template<class Type>
-int CTECArray<Type>::getSize()
+void CTECArray<Type>::swap(int indexOne, int indexTwo)
 {
-    return this->size;
+    assert(indexOne < size && indexTwo < size);
+    
+    Type temp = get(indexOne);
+    set(indexOne, get(indexTwo));
+    set(indexTwo, temp);
 }
 
 template<class Type>
-void CTECArray<Type>::set(int pos, const Type& value)
+void CTECArray<Type>::set(int position, const Type& value)
 {
-    assert(pos < size && pos >= 0);
+    assert(position < size && position >= 0);
     ArrayNode<Type> * current = head;
-    for (int spot = 0; spot <= pos; spot++)
+    for (int spot = 0; spot <= position; spot++)
     {
-        if (spot != pos)
+        if (spot != position)
         {
             current = current->getNext();
         }
@@ -156,9 +100,27 @@ void CTECArray<Type>::set(int pos, const Type& value)
         {
             current->setValue(value);
         }
-        
     }
-    
-    
-    
+}
+
+template<class Type>
+void CTECArray<Type>::selectionSort()
+{
+    for (int outerLoop = 0; outerLoop < size - 1; outerLoop++)
+    {
+        int selectedMinimum = outerLoop;
+        
+        for (int innerLoop = outerLoop + 1; innerLoop < size; innerLoop++)
+        {
+            if (get(innerLoop) < get(selectedMinimum))
+            {
+                selectedMinimum = innerLoop;
+            }
+        }
+        
+        if (selectedMinimum != outerLoop)
+        {
+            swap(selectedMinimum, outerLoop);
+        }
+    }
 }

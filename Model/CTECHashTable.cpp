@@ -10,14 +10,15 @@
 #include "CTECHashTable.hpp"
 #include <cmath>
 using namespace std;
+using namespace CTECData;
 
 
 template<class Type>
 CTECHashTable<Type> :: CTECHashTable()
 {
     this->size = 0;
-    this->capcity = 101;
-    this->efficencyPercentage = .667;
+    this->capacity = 101;
+    this->efficiencyPercentage = .667;
     this->internalStorage = new HashNode<Type>*[capacity];
     this->chainedSize = 0;
     this->chainedCapacity = 101;
@@ -41,12 +42,13 @@ void CTECHashTable<Type> :: add(HashNode<Type> currentNode)
 {
     if(!contains(currentNode))
     {
-        if(size/capacity <= this->efficencyPercentage)
+        if(size/capacity >= this->efficiencyPercentage)
         {
             updateCapacity();
         }
         int insertionIndex = findPos(currentNode);
-        if(internalStorage[insertionIndex] != nullptr)
+        HashNode<Type> * tempPointer = internalStorage[insertionIndex];
+        if(tempPointer != NULL)
         {
             insertionIndex = handleCollision(currentNode);
             
@@ -54,8 +56,10 @@ void CTECHashTable<Type> :: add(HashNode<Type> currentNode)
             {
                 insertionIndex = (insertionIndex + 1) % capacity;
             }
+            cout << internalStorage[insertionIndex] << endl;
         }
         internalStorage[insertionIndex] = &currentNode;
+        cout << internalStorage[insertionIndex] << endl;
         size++;
     }
     
@@ -64,7 +68,7 @@ void CTECHashTable<Type> :: add(HashNode<Type> currentNode)
 }
 
 template<class Type>
-int CTECHashTable<Type> :: findPos(HashNode<Type> currentNode)
+int CTECHashTable<Type> :: findPosition(HashNode<Type> currentNode)
 {
     int pos = 0;
     pos = currentNode.getKey() % capacity;
@@ -135,23 +139,29 @@ void CTECHashTable<Type> :: updateCapacity()
         if(internalStorage[index] != nullptr)
         {
             int updatedIndex = findPos(*internalStorage[index]);
-            largerStorage[updatedIndex] = internalStorage[index];
+            largerStorage[updatedIndex] = *internalStorage[index];
             
         }
     }
-    internalStorage = largerStorage;
+    internalStorage = &largerStorage;
 }
 
 template<class Type>
 bool CTECHashTable<Type> :: contains(HashNode<Type> currentNode)
 {
+    
     bool isInTable = false;
     int possibleLocation = findPos(currentNode);
     
-    while(internalStorage[possibleLocation] && !isInTable)
+    cout << "here" << endl;
+    
+    while(internalStorage[possibleLocation] != nullptr && !isInTable)
     {
+        cout << "here2" << endl;
+        
         if(internalStorage[possibleLocation]->getValue() == currentNode.getValue())
         {
+            cout << "here3" << endl;
             isInTable = true;
         }
         possibleLocation = (possibleLocation + 1) % capacity;
@@ -168,7 +178,7 @@ bool CTECHashTable<Type> :: remove(HashNode<Type> currentNode)
     {
         int possibleLocation = findPos(currentNode);
         
-        while(internalStorage[possibleLocation] && !hasBeenRemoved)
+        while(internalStorage[possibleLocation] != nullptr && !hasBeenRemoved)
         {
             if(internalStorage[possibleLocation]->getValue() == currentNode.getValue())
             {
@@ -204,7 +214,7 @@ void CTECHashTable<Type> :: addChained(HashNode<Type> currentNode)
 {
     if((chainedSize/chainedCapacity) >= efficiencyPercentage())
     {
-        updateChainCapacity();
+        updateChainedCapacity();
     }
     int insertionIndex = findPos(currentNode);
     if(chainedStorage[insertionIndex] != nullptr)
@@ -225,7 +235,7 @@ void CTECHashTable<Type> :: addChained(HashNode<Type> currentNode)
 
 
 template<class Type>
-void CTECHashTable<Type> :: updateChainCapacity()
+void CTECHashTable<Type> :: updateChainedCapacity()
 {
     int updatedChainedCapacity = getNextPrime();
     int oldChainedCapacity = capacity;
@@ -255,11 +265,3 @@ void CTECHashTable<Type> :: updateChainCapacity()
     }
     
 }
-
-
-
-
-
-
-
-
